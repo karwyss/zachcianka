@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zachcianka – zapiekanki & frytki belgijskie | Wadowice</title>
+  <meta name="description" content="zachcianka – najlepsze zapiekanki i frytki belgijskie w Wadowicach. Plac Jana Pawła II. Świeże składniki, domowy smak. Zadzwoń: 501 214 643">
+  <meta name="keywords" content="zapiekanki Wadowice, frytki belgijskie Wadowice, jedzenie Wadowice, Plac Jana Pawła II, zachcianka Wadowice">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#1a1210;--surface:#221815;--card:#2b1f1a;
+      --brown:#7a4a38;--brown-l:#9b6248;
+      --cream:#e8dcc8;--cream-d:#c8b89a;--chalk:#f0e8d8;
+      --accent:#d4915a;--accent2:#e8b878;
+      --text:#e0d0bc;--muted:#8a7060;--radius:14px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Lora',Georgia,serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+    /* NAV */
+    nav{position:fixed;top:0;width:100%;z-index:500;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:background .4s}
+    nav.scrolled{background:rgba(26,18,16,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(122,74,56,.25)}
+    .nav-logo{text-decoration:none}
+    .logo-box{background:var(--brown);border-radius:10px;padding:.35rem .9rem;font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--cream);letter-spacing:-.02em;display:inline-block}
+    .nav-links{display:flex;list-style:none;gap:2.2rem;align-items:center}
+    .nav-links a{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--cream-d);transition:color .2s}
+    .nav-links a:hover{color:var(--accent2)}
+    .nav-call{background:var(--brown)!important;color:var(--cream)!important;padding:.45rem 1.2rem;border-radius:50px}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:600}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px;transition:.3s}
+
+    /* HERO */
+    #hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 5rem;position:relative;overflow:hidden}
+    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;transform:scale(1.04);animation:heroZoom 12s ease-out forwards}
+    @keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1.0)}}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,8,5,.97) 0%,rgba(15,8,5,.7) 35%,rgba(15,8,5,.25) 65%,rgba(15,8,5,.15) 100%)}
+    .hero-overlay::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(15,8,5,.55) 0%,transparent 60%)}
+    .hero-content{position:relative;z-index:2;padding:0 3rem;max-width:1100px}
+    .hero-tagline{font-family:'Caveat',cursive;font-size:clamp(1rem,2vw,1.3rem);color:var(--accent2);letter-spacing:.06em;margin-bottom:1rem;opacity:0;animation:fadeUp .7s .3s forwards}
+    .hero-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3.5rem,9vw,8rem);line-height:.95;letter-spacing:-.04em;color:var(--chalk);margin-bottom:2rem;opacity:0;animation:fadeUp .8s .45s forwards}
+    .hero-h1 .outline{-webkit-text-stroke:2px var(--brown-l);color:transparent}
+    .hero-h1 .small-row{font-size:.38em;font-weight:400;font-family:'Lora',serif;font-style:italic;color:var(--cream-d);display:block;letter-spacing:.02em;margin-bottom:.3em}
+    .hero-row{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .65s forwards}
+    .hero-note{font-family:'Caveat',cursive;font-size:1.1rem;color:rgba(232,220,200,.65)}
+    .hero-note strong{color:var(--accent2)}
+    .hero-scroll-hint{position:absolute;bottom:2rem;right:3rem;writing-mode:vertical-rl;font-family:'Syne',sans-serif;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,220,200,.4);display:flex;align-items:center;gap:.8rem;opacity:0;animation:fadeUp .8s 1.2s forwards}
+    .hero-scroll-hint::before{content:'';width:1px;height:50px;background:linear-gradient(to bottom,var(--brown),transparent)}
+    /* photo credit badge */
+    .hero-photo-credit{position:absolute;bottom:1rem;left:3rem;font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(232,220,200,.2);z-index:3}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 2.2rem;border-radius:50px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-cream{background:var(--cream);color:var(--bg);box-shadow:0 6px 30px rgba(232,220,200,.2)}
+    .btn-cream:hover{box-shadow:0 10px 40px rgba(232,220,200,.35)}
+    .btn-ghost{background:transparent;border:1.5px solid rgba(232,220,200,.3);color:var(--cream-d)}
+    .btn-ghost:hover{border-color:var(--accent2);color:var(--accent2)}
+    .btn-dark{background:var(--bg);color:var(--cream);box-shadow:0 8px 30px rgba(0,0,0,.3);font-size:1rem;padding:1rem 2.8rem}
+    .btn-dark:hover{box-shadow:0 12px 40px rgba(0,0,0,.5)}
+
+    /* LAYOUT */
+    .container{max-width:1140px;margin:0 auto;padding:0 2.5rem}
+    .section-pad{padding:7rem 0}
+    .label{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:block}
+    h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--chalk);margin-bottom:1.2rem}
+    h2 .ital{font-family:'Lora',serif;font-weight:400;font-style:italic;color:var(--accent2)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.vis{opacity:1;transform:none}
+    .chalk-line{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(232,220,200,.12),transparent)}
+
+    /* ABOUT */
+    #onas{background:var(--surface)}
+    .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;align-items:center}
+    .about-text p{font-size:1.05rem;line-height:1.85;color:var(--cream-d);margin-bottom:1.4rem}
+    .about-quote{font-family:'Caveat',cursive;font-size:1.7rem;color:var(--accent2);line-height:1.4;border-left:3px solid var(--brown);padding-left:1.4rem;margin:2rem 0}
+    .about-pills{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem}
+    .pill{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.45rem 1.1rem;border-radius:50px;border:1.5px solid rgba(122,74,56,.5);color:var(--cream-d);background:rgba(122,74,56,.15)}
+    .about-visual{display:flex;flex-direction:column;gap:1.2rem}
+    .stat-card{background:var(--card);border:1px solid rgba(122,74,56,.25);border-radius:var(--radius);padding:1.8rem 2rem;display:flex;align-items:center;gap:1.4rem}
+    .stat-num{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--accent2);line-height:1;flex-shrink:0}
+    .stat-label{font-size:.9rem;color:var(--cream-d);line-height:1.5}
+    .stat-label strong{display:block;font-size:1rem;color:var(--chalk);font-family:'Syne',sans-serif;font-weight:700}
+
+    /* MENU */
+    #menu{background:var(--bg)}
+    .menu-tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:3rem}
+    .tab-btn{font-family:'Syne',sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.55rem 1.4rem;border-radius:50px;border:1.5px solid rgba(122,74,56,.35);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+    .tab-btn:hover,.tab-btn.active{background:var(--brown);border-color:var(--brown);color:var(--cream)}
+    .menu-section{display:none}
+    .menu-section.active{display:block}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem}
+    .menu-item{background:var(--card);border:1px solid rgba(122,74,56,.2);border-radius:var(--radius);padding:1.6rem 1.8rem;transition:transform .25s,border-color .25s,box-shadow .25s;opacity:0;transform:translateY(20px)}
+    .menu-item.vis{opacity:1;transform:none}
+    .menu-item:hover{transform:translateY(-4px);border-color:rgba(212,145,90,.4);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    .menu-item-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.7rem}
+    .menu-item h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--chalk);letter-spacing:-.01em}
+    .menu-price{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--accent2);white-space:nowrap;margin-left:1rem}
+    .menu-desc{font-size:.88rem;color:var(--muted);line-height:1.6;font-style:italic}
+    .menu-badge{display:inline-block;margin-top:.8rem;font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .7rem;border-radius:50px;background:rgba(212,145,90,.15);color:var(--accent);border:1px solid rgba(212,145,90,.25)}
+    .chalk-callout{background:var(--card);border:2px dashed rgba(232,220,200,.12);border-radius:var(--radius);padding:2rem 2.5rem;margin-top:2.5rem;text-align:center}
+    .chalk-callout p{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--cream-d)}
+    .chalk-callout p strong{color:var(--accent2)}
+
+    /* FEATURES */
+    #features{background:var(--surface)}
+    .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem}
+    .feat-item{padding:2.2rem 1.8rem;border-radius:var(--radius);background:var(--card);border:1px solid rgba(122,74,56,.2);transition:transform .25s;opacity:0;transform:translateY(24px)}
+    .feat-item.vis{opacity:1;transform:none}
+    .feat-item:hover{transform:translateY(-5px)}
+    .feat-icon{font-size:2rem;margin-bottom:1.2rem;display:block}
+    .feat-item h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--chalk);margin-bottom:.5rem}
+    .feat-item p{font-size:.88rem;color:var(--muted);line-height:1.6}
+
+    /* REVIEWS */
+    #opinie{background:var(--bg)}
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3.5rem}
+    .r-card{background:var(--card);border:1px solid rgba(122,74,56,.2);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;gap:.6rem;opacity:0;transform:translateY(24px);transition:opacity .55s,transform .55s,box-shadow .25s}
+    .r-card.vis{opacity:1;transform:none}
+    .r-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.4)}
+    .r-stars{color:var(--accent2);letter-spacing:2px;font-size:.9rem}
+    .r-text{font-size:.95rem;color:var(--cream-d);line-height:1.75;font-style:italic;flex:1}
+    .r-author{display:flex;align-items:center;gap:.8rem;padding-top:1rem;border-top:1px solid rgba(122,74,56,.2)}
+    .r-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--brown) 0%,#4a2518 100%);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;color:var(--cream);flex-shrink:0}
+    .r-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--chalk)}
+    .r-sub{font-size:.75rem;color:var(--muted)}
+
+    /* CONTACT */
+    #kontakt{background:var(--surface)}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-top:3.5rem}
+    .contact-info{display:flex;flex-direction:column;gap:1.4rem}
+    .c-item{background:var(--card);border:1px solid rgba(122,74,56,.25);border-radius:var(--radius);padding:1.4rem 1.6rem;display:flex;align-items:flex-start;gap:1.1rem}
+    .c-icon{width:42px;height:42px;border-radius:10px;background:var(--brown);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .c-item h3{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+    .c-item p{font-size:.98rem;color:var(--chalk);line-height:1.55}
+    .c-item a{color:var(--accent2);text-decoration:none}
+    .map-box{border-radius:20px;overflow:hidden;border:2px solid rgba(122,74,56,.3);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .map-box iframe{display:block;width:100%;height:420px;border:none;filter:saturate(.8) brightness(.85)}
+
+    /* CTA */
+    #cta{background:var(--brown);padding:5rem 0;text-align:center;position:relative;overflow:hidden}
+    #cta::before{content:'zachcianka';position:absolute;font-family:'Syne',sans-serif;font-weight:800;font-size:18vw;color:rgba(0,0,0,.1);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none}
+    #cta .container{position:relative;z-index:1}
+    #cta h2{font-size:clamp(2rem,5vw,3.8rem);color:var(--cream);margin-bottom:1rem}
+    .cta-phone{font-family:'Caveat',cursive;font-size:clamp(2.5rem,6vw,4.5rem);color:var(--cream);display:block;margin:1rem 0 2rem;text-decoration:none;transition:opacity .2s}
+    .cta-phone:hover{opacity:.8}
+
+    /* FOOTER */
+    footer{background:var(--bg);border-top:1px solid rgba(122,74,56,.2);padding:2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-family:'Syne',sans-serif;font-size:.78rem;color:var(--muted)}
+    footer a{color:var(--muted);text-decoration:none}
+    footer a:hover{color:var(--accent2)}
+    .footer-seo{font-size:.68rem;opacity:.35;max-width:500px;line-height:1.6}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .feat-grid{grid-template-columns:1fr 1fr}
+      .reviews-grid{grid-template-columns:1fr 1fr}
+      .about-grid{grid-template-columns:1fr;gap:3rem}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:680px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--bg);align-items:center;justify-content:center;gap:3rem;font-size:1.1rem;z-index:499}
+      .hero-content{padding:0 1.5rem}
+      .feat-grid{grid-template-columns:1fr}
+      .reviews-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo"><div class="logo-box">zachcianka</div></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#onas">O nas</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#opinie">Opinie</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="tel:501214643" class="nav-call">📞 501 214 643</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section id="hero">
+  <img
+    class="hero-img"
+    src="https://images.unsplash.com/photo-1528736235302-52922df5c122?w=1900&auto=format&fit=crop&q=85"
+    alt="Chrupiąca zapiekanka – zachcianka Wadowice"
+    loading="eager"
+    onerror="this.style.display='none'; document.getElementById('hero').style.background='radial-gradient(ellipse 70% 50% at 20% 50%,rgba(122,74,56,.6) 0%,#1a1210 70%)'"
+  >
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tagline">Wadowice · Plac Jana Pawła II · od serca do talerza</p>
+    <h1 class="hero-h1">
+      <span class="small-row">najlepsze w mieście</span>
+      zapie<span class="outline">kanki</span>
+    </h1>
+    <div class="hero-row">
+      <a href="#menu" class="btn btn-cream">🥖 Zobacz menu</a>
+      <a href="tel:501214643" class="btn btn-ghost">📞 Zadzwoń</a>
+      <span class="hero-note">Świeże składniki · <strong>robione na miejscu</strong></span>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">scroll</div>
+  <div class="hero-photo-credit">photo: unsplash</div>
+</section>
+
+<section id="onas" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="label">O nas</span>
+        <h2>Małe miejsce,<br><span class="ital">wielka pasja</span></h2>
+        <div class="about-text">
+          <p>Jesteśmy lokalem gastronomicznym w samym centrum Wadowic, na Placu Jana Pawła II. Specjalizujemy się w zapiekankach i frytках belgijskich – robimy je ze świeżych składników, każdego dnia.</p>
+          <div class="about-quote">"Zachcianki są po to, by je spełniać..."</div>
+          <p>Chrupiąca bagietka z pieca, dobrane sosy i miła obsługa – to nasza codzienność. Wpadnij i przekonaj się sam.</p>
+        </div>
+        <div class="about-pills">
+          <span class="pill">🌿 Świeże składniki</span>
+          <span class="pill">👨‍🍳 Na miejscu</span>
+          <span class="pill">🍽️ Duże porcje</span>
+          <span class="pill">📍 Centrum Wadowic</span>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="stat-card">
+          <span class="stat-num">★5.0</span>
+          <div class="stat-label"><strong>Ocena klientów</strong>Same pozytywne opinie od dnia otwarcia</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <div class="stat-label"><strong>Świeże składniki</strong>Żadnych zamrożonek — codziennie najlepsza jakość</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">🥖</span>
+          <div class="stat-label"><strong>Robione na miejscu</strong>Każda zapiekanka przygotowywana na zamówienie</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chalk-line"></div>
+
+<section id="menu" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Menu</span>
+      <h2>Co <span class="ital">dziś jemy?</span></h2>
+    </div>
+    <div class="menu-tabs reveal">
+      <button class="tab-btn active" data-tab="zapiekanki">🥖 Zapiekanki</button>
+      <button class="tab-btn" data-tab="frytki">🍟 Frytki belgijskie</button>
+      <button class="tab-btn" data-tab="sosy">🫙 Sosy</button>
+      <button class="tab-btn" data-tab="kawa">☕ Kawa & herbata</button>
+    </div>
+
+    <div class="menu-section active" id="tab-zapiekanki">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-header"><h3>Szczypiork</h3></div><p class="menu-desc">Klasyk w najczystszej postaci. Chrupiąca bagietka z serem, pieczarkami i szczypiorkiem.</p><span class="menu-badge">Klasyk</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Prażona cebulka</h3></div><p class="menu-desc">Bogata w smak zapiekanka ze złocistą prażoną cebulką, serem i aromatycznymi dodatkami.</p><span class="menu-badge">Bestseller</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Sos czosnkowy</h3></div><p class="menu-desc">Intensywna zapiekanka z kremowym sosem czosnkowym – dla wielbicieli mocniejszych smaków.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Sos majonezowy</h3></div><p class="menu-desc">Delikatna i kremowa wersja z sosem majonezowym, idealna dla łagodniejszych podniebień.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Piri Piri – Ostry 🌶️</h3></div><p class="menu-desc">Odważna wersja z ostrym sosem piri piri. Tylko dla tych, co lubią pikantnie! Uniqa!</p><span class="menu-badge">🌶️ Ostry · Uniqa</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Z oscypkiem i żurawiną</h3></div><p class="menu-desc">Góralski akcent – oscypek topiony z żurawiną na chrupiącej bagietce. Wyjątkowe połączenie.</p><span class="menu-badge">🧀 Regionalna</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Z dodatkami (HIT!) 🔥</h3><span class="menu-price">32 zł</span></div><p class="menu-desc">Bogata zapiekanka z wybranym nadzieniem i dwoma sosami. Pełna, sycąca, wyjątkowa!</p><span class="menu-badge">🔥 HIT</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Kurczak Hawajski</h3><span class="menu-price">54 zł</span></div><p class="menu-desc">Soczysty kurczak z ananasem, żółtym serem i sosem – tropikalna uczta na chrupiącej bagietce.</p><span class="menu-badge">🍍 HIT!</span></div>
+      </div>
+      <div class="chalk-callout reveal"><p>Zachcianki są po to, by je <strong>spełniać</strong> – skomponuj swoją wersję pytając obsługę! 🥖</p></div>
+    </div>
+
+    <div class="menu-section" id="tab-frytki">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki belgijskie w ziołach</h3><span class="menu-price">15 zł</span></div><p class="menu-desc">Złociste frytki belgijskie podane z aromatyczną mieszanką ziół.</p><span class="menu-badge">🌿 Klasyk</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytka belgijska mała</h3><span class="menu-price">10 zł</span></div><p class="menu-desc">Mniejsza porcja chrupiących frytek belgijskich – idealna jako dodatek.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + udo (2 szt.)</h3><span class="menu-price">30 zł</span></div><p class="menu-desc">Frytki belgijskie z dwoma soczystymi udkami z kurczaka. Zestaw, który nasyci!</p><span class="menu-badge">🍗 Zestaw</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + popsy</h3><span class="menu-price">25 zł</span></div><p class="menu-desc">Frytki belgijskie z chrupiącymi popsami z kurczaka. Dzieci i dorośli uwielbiają!</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + nuggetsy</h3><span class="menu-price">25 zł</span></div><p class="menu-desc">Klasyczne połączenie złotych frytek belgijskich z chrupiącymi nuggetsami.</p><span class="menu-badge">Klasyk</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + skrzydełka</h3><span class="menu-price">25 zł</span></div><p class="menu-desc">Frytki belgijskie z aromatycznymi skrzydełkami z kurczaka. Idealne do piwa!</p><span class="menu-badge">🍺 Polecamy</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + kebab</h3><span class="menu-price">28 zł</span></div><p class="menu-desc">Frytki belgijskie z soczystym mięsem kebab i ulubionym sosem.</p><span class="menu-badge">🥙 Hit</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + krewetki w cieście</h3><span class="menu-price">35 zł</span></div><p class="menu-desc">Ekskluzywne połączenie belgijskich frytek z chrupiącymi krewetkami w cieście.</p><span class="menu-badge">🦐 Premium</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Frytki + udo dzieciom</h3><span class="menu-price">30 zł</span></div><p class="menu-desc">Frytki z udkiem – porcja idealna dla dzieci.</p><span class="menu-badge">👶 Dla dzieci</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Placuszki ziemniaczane</h3><span class="menu-price">10 szt.</span></div><p class="menu-desc">Chrupiące placuszki ziemniaczane – domowy smak, który zawsze zachwyca.</p><span class="menu-badge">🥔 Domowe</span></div>
+      </div>
+    </div>
+
+    <div class="menu-section" id="tab-sosy">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-header"><h3>Sos Teriyaki</h3><span class="menu-price">4 zł</span></div><p class="menu-desc">Słodko-słony sos teriyaki – doskonały do frytek i zapiekanek.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Sos Serowy</h3><span class="menu-price">4 zł</span></div><p class="menu-desc">Kremowy, ciągnący sos serowy – uzależnia od pierwszego kęsa.</p><span class="menu-badge">🧀 Bestseller</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Ketchup</h3><span class="menu-price">4 zł</span></div><p class="menu-desc">Klasyczny ketchup – pomidorowy i aromatyczny.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Majonez</h3></div><p class="menu-desc">Kremowy majonez – delikatny i pyszny do każdego dania.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Sos Czosnkowy</h3></div><p class="menu-desc">Intensywny sos czosnkowy dla miłośników wyrazistych smaków.</p><span class="menu-badge">🧄 Polecamy</span></div>
+      </div>
+    </div>
+
+    <div class="menu-section" id="tab-kawa">
+      <div class="menu-grid">
+        <div class="menu-item"><div class="menu-item-header"><h3>Czarna kawa</h3><span class="menu-price">8 zł</span></div><p class="menu-desc">Tradycyjna czarna kawa – prosta, mocna i aromatyczna.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Biała kawa</h3><span class="menu-price">3 zł</span></div><p class="menu-desc">Kawa biała – delikatna z mlekiem.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Espresso</h3><span class="menu-price">8 zł</span></div><p class="menu-desc">Intensywne espresso z najlepszej ziarnistej kawy.</p><span class="menu-badge">☕ Mocne</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Cappuccino</h3><span class="menu-price">8 zł</span></div><p class="menu-desc">Klasyczne cappuccino – espresso z aksamitną pianką mleczną.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Flat White</h3><span class="menu-price">10 zł</span></div><p class="menu-desc">Podwójne espresso z gładkim spieniony mlekiem – dla koneserów.</p><span class="menu-badge">✨ Premium</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Latte Macchiato</h3></div><p class="menu-desc">Delikatna kawa z dużą ilością spienionego mleka – łagodna i przyjemna.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Baya Mocca</h3></div><p class="menu-desc">Czekoladowa kawa – połączenie espresso z intensywnym syropem czekoladowym.</p><span class="menu-badge">🍫 Czekolada</span></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Baya Mocca z bitą śmietaną</h3></div><p class="menu-desc">Baya Mocca zwieńczona kopką bitej śmietany – słodka przyjemność.</p></div>
+        <div class="menu-item"><div class="menu-item-header"><h3>Herbata</h3><span class="menu-price">8 zł</span></div><p class="menu-desc">Wybór aromatycznych herbat – rozgrzewa i uspokaja.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chalk-line"></div>
+
+<section id="features" class="section-pad">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 0">
+      <span class="label">Dlaczego my?</span>
+      <h2>Cztery powody,<br><span class="ital">żeby zajrzeć</span></h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-item"><span class="feat-icon">🌿</span><h3>Świeże składniki</h3><p>Wybieramy produkty każdego dnia. Żadnych zamrożonek – same naturalne smaki.</p></div>
+      <div class="feat-item"><span class="feat-icon">👨‍🍳</span><h3>Robione na miejscu</h3><p>Każda zapiekanka i każda porcja frytek – przygotowywana tu i teraz, na Twoje zamówienie.</p></div>
+      <div class="feat-item"><span class="feat-icon">🍽️</span><h3>Duże porcje</h3><p>Wychodzimy z założenia, że najedzony klient to szczęśliwy klient. Porcje mówią same za siebie.</p></div>
+      <div class="feat-item"><span class="feat-icon">📍</span><h3>Centrum Wadowic</h3><p>Jesteśmy na Placu Jana Pawła II – w sercu miasta, tuż obok najważniejszych atrakcji.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="opinie" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Opinie gości</span>
+      <h2>Co mówią o nas <span class="ital">klienci</span></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="r-card"><div class="r-stars">★★★★★</div><p class="r-text">Trafiliśmy przypadkiem i to był strzał w dziesiątkę. Świeże składniki i świetnie wypieczona zapiekanka.</p><div class="r-author"><div class="r-avatar">D</div><div><div class="r-name">Damian</div><div class="r-sub">Klient Zachcianki</div></div></div></div>
+      <div class="r-card"><div class="r-stars">★★★★★</div><p class="r-text">Jakość fenomenalna. Wszystko robione świeże na miejscu. Zapiekanka chrupiąca i przepyszna.</p><div class="r-author"><div class="r-avatar">A</div><div><div class="r-name">axe dane</div><div class="r-sub">Klient Zachcianki</div></div></div></div>
+      <div class="r-card"><div class="r-stars">★★★★★</div><p class="r-text">Nowe miejsce na mapie Wadowic, ale jakość i smak na naprawdę wysokim poziomie.</p><div class="r-author"><div class="r-avatar">P</div><div><div class="r-name">Piotr Czopor</div><div class="r-sub">Klient Zachcianki</div></div></div></div>
+      <div class="r-card"><div class="r-stars">★★★★★</div><p class="r-text">Pyszne zapiekanki! Duże porcje i bardzo miła obsługa. Wracam regularnie.</p><div class="r-author"><div class="r-avatar">M</div><div><div class="r-name">Monika Sabuda</div><div class="r-sub">Stała klientka</div></div></div></div>
+      <div class="r-card"><div class="r-stars">★★★★★</div><p class="r-text">Duże zapiekanki z bogatym nadzieniem i świetna atmosfera. Polecam każdemu!</p><div class="r-author"><div class="r-avatar">E</div><div><div class="r-name">Ewa C.</div><div class="r-sub">Klientka Zachcianki</div></div></div></div>
+      <div class="r-card" style="background:var(--brown);border-color:transparent">
+        <p style="font-family:'Caveat',cursive;font-size:1.5rem;color:var(--cream);line-height:1.5;flex:1">Przekonaj się sam – wpadnij do nas na Plac Jana Pawła II 🥖</p>
+        <a href="tel:501214643" class="btn btn-dark" style="justify-content:center;margin-top:1.5rem">📞 Zadzwoń teraz</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="section-pad">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Gdzie jesteśmy</span>
+      <h2>Znajdź nas <span class="ital">w centrum</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="c-item"><div class="c-icon">📍</div><div><h3>Adres</h3><p>Plac Jana Pawła II<br>34-100 Wadowice</p></div></div>
+        <div class="c-item"><div class="c-icon">📞</div><div><h3>Telefon</h3><p><a href="tel:501214643">501 214 643</a></p></div></div>
+        <div class="c-item"><div class="c-icon">🕐</div><div><h3>Godziny otwarcia</h3><p>Zadzwoń, aby potwierdzić aktualne godziny</p></div></div>
+        <a href="tel:501214643" class="btn btn-cream" style="justify-content:center;font-size:1rem">📞 Zadzwoń i zamów</a>
+      </div>
+      <div class="map-box reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.5!2d19.4956!3d49.8841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47166f3a6b678e6b%3A0x48f8dfc8c5dd6d5a!2sPlac%20Jana%20Paw%C5%82a%20II%2C%2034-100%20Wadowice!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokalizacja zachcianka Wadowice"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="container">
+    <div class="reveal">
+      <h2>Masz ochotę na <span class="ital" style="color:var(--cream-d)">zapiekankę?</span></h2>
+      <a href="tel:501214643" class="cta-phone">501 214 643</a>
+      <a href="tel:501214643" class="btn btn-dark">📞 Zadzwoń teraz</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="logo-box" style="display:inline-block;margin-bottom:.4rem">zachcianka</div>
+    <p>Plac Jana Pawła II · 34-100 Wadowice · <a href="tel:501214643">501 214 643</a></p>
+    <p class="footer-seo">zachcianka – zapiekanki Wadowice, frytki belgijskie Wadowice, jedzenie Wadowice, Plac Jana Pawła II Wadowice, najlepsze zapiekanki Wadowice</p>
+  </div>
+  <p style="font-size:.75rem">© 2025 zachcianka Wadowice</p>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      const section = document.getElementById('tab-' + btn.dataset.tab);
+      section.classList.add('active');
+      section.querySelectorAll('.menu-item').forEach((el, i) => {
+        el.classList.remove('vis');
+        setTimeout(() => el.classList.add('vis'), i * 55);
+      });
+    });
+  });
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal, .feat-item, .r-card').forEach(el => io.observe(el));
+
+  // animate initial tab items
+  document.querySelectorAll('#tab-zapiekanki .menu-item').forEach((el, i) => {
+    setTimeout(() => el.classList.add('vis'), 400 + i * 70);
+  });
+</script>
+</body>
+</html>
